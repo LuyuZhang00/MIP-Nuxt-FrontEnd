@@ -1,6 +1,6 @@
-# {{ name }}
+# MIP-Nuxt-FrontEnd
 
-> {{ description }}
+> 一个医疗信息平台前端项目
 
 ## Build Setup
 
