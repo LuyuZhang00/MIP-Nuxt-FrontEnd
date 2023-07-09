@@ -9,7 +9,8 @@
     <div class="search-container">
       <div class="search-wrapper">
         <div class="hospital-search">
-          <el-autocomplete class="search-input" prefix-icon="el-icon-search" v-model="state"
+          <!-- <el-autocomplete class="search-input" prefix-icon="el-icon-search" v-model="state" -->
+          <el-autocomplete class="search-input" prefix-icon="el-icon-search"
             :fetch-suggestions="querySearchAsync" placeholder="点击输入医院名称" @select="handleSelect">
             <span slot="suffix" class="search-btn v-link highlight clickable selected">搜索 </span>
           </el-autocomplete>
@@ -50,9 +51,11 @@
                   <div class="hospital-title"> {{ item.hosname }}</div>
                   <div class="bottom-container">
                     <div class="icon-wrapper">
-                      <span class="iconfont"></span>{{ item.param.hostypeString }}</div>
+                      <span class="iconfont"></span>{{ item.param.hostypeString }}
+                    </div>
                     <div class="icon-wrapper">
-                      <span class="iconfont"> </span> 每天{{ item.bookingRule.releaseTime }}放号</div>
+                      <span class="iconfont"> </span> 每天{{ item.bookingRule.releaseTime }}放号
+                    </div>
                   </div>
                 </div>
                 <img :src="'data:image/jpeg;base64,' + item.logoData" :alt="item.hosname" class="hospital-img">

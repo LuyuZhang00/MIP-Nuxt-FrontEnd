@@ -8,10 +8,12 @@
         </span>
       </div>
       <div class="nav-item ">
-        <span class="v-link clickable dark" :onclick="'javascript:window.location=\'/hosp/detail/' + hospital.hoscode + '\''"> 医院详情 </span>
+        <span class="v-link clickable dark"
+          :onclick="'javascript:window.location=\'/hosp/detail/' + hospital.hoscode + '\''"> 医院详情 </span>
       </div>
       <div class="nav-item">
-        <span class="v-link clickable dark" :onclick="'javascript:window.location=\'/hosp/notice/' + hospital.hoscode + '\''"> 预约须知 </span>
+        <span class="v-link clickable dark"
+          :onclick="'javascript:window.location=\'/hosp/notice/' + hospital.hoscode + '\''"> 预约须知 </span>
       </div>
       <div class="nav-item"><span class="v-link clickable dark"> 停诊信息 </span>
       </div>
@@ -99,6 +101,7 @@
 import '~/assets/css/hospital_personal.css'
 import '~/assets/css/hospital.css'
 import hospitalApi from '@/api/hosp'
+import cookie from 'js-cookie'
 
 export default {
   data() {
@@ -131,10 +134,19 @@ export default {
     move(index, depcode) {
       this.activeIndex = index
       document.getElementById(depcode).scrollIntoView();
-    }
+    },
     // schedule(depcode) {
     //   window.location.href = '/hosp/schedule?hoscode=' + this.hoscode + "&depcode=" + depcode
     // }
+    schedule(depcode) {
+      // 登录判断
+      let token = cookie.get('token')
+      if (!token) {
+        loginEvent.$emit('loginDialogEvent')
+        return
+      }
+      window.location.href = '/hospital/schedule?hoscode=' + this.hospital.hoscode + "&depcode=" + depcode
+    }
   }
 }
 </script>
