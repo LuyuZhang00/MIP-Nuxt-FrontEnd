@@ -63,7 +63,7 @@
             </el-form>
             <div class="bottom-wrapper">
               <div class="button-wrapper">
-                <div class="v-button" @click="saveUserAuah()">{{ submitBnt }}</div>
+                <div class="v-button" @click="saveUserAuth()">{{ submitBnt }}</div>
               </div>
             </div>
           </div>
@@ -129,7 +129,7 @@ export default {
         this.userInfo = response.data
       })
     },
-    saveUserAuah() {
+    saveUserAuth() {
       if (this.submitBnt == '正在提交...') {
         this.$message.info('重复提交')
         return

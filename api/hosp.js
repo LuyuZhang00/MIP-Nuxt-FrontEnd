@@ -4,7 +4,7 @@ const api_name = `/api/hosp/hospital`
 
 export default {
 
-  
+
   getPageList(page, limit, searchObj) {
     return request({
       url: `${api_name}/${page}/${limit}`,
@@ -30,6 +30,22 @@ export default {
   findDepartment(hoscode) {
     return request({
       url: `${api_name}/department/${hoscode}`,
+      method: 'get'
+    })
+  },
+
+  //获取排班信息
+  getBookingScheduleRule(page, limit, hoscode, depcode) {
+    return request({
+      url: `${api_name}/auth/getBookingScheduleRule/${page}/${limit}/${hoscode}/${depcode}`,
+      method: 'get'
+    })
+  },
+
+  //可预约信息分页
+  findScheduleList(hoscode, depcode, workDate) {
+    return request({
+      url: `${api_name}/auth/findScheduleList/${hoscode}/${depcode}/${workDate}`,
       method: 'get'
     })
   }
