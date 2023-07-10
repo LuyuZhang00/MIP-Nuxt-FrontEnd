@@ -48,6 +48,12 @@ export default {
       url: `${api_name}/auth/findScheduleList/${hoscode}/${depcode}/${workDate}`,
       method: 'get'
     })
+  },
+  getSchedule(id) {
+    return request({
+      url: `${api_name}/getSchedule/${id}`,
+      method: 'get'
+    })
   }
 
 }
