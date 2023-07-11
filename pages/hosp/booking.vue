@@ -142,6 +142,8 @@ import '~/assets/css/hospital_personal.css'
 import '~/assets/css/hospital.css'
 import hospitalApi from '@/api/hosp'
 import patientApi from '@/api/patient'
+import orderApi from '@/api/orderInfo'
+
 export default {
   data() {
     return {
@@ -182,6 +184,22 @@ export default {
       this.patient = this.patientList[index]
     },
     submitOrder() {
+      if (this.patient.id == null) {
+        this.$message.error('请选择就诊人')
+        return
+      }
+      // 防止重复提交
+      if (this.submitBnt == '正在提交...') {
+        this.$message.error('重复提交')
+        return
+      }
+      this.submitBnt = '正在提交...'
+      orderInfoApi.submitOrder(this.scheduleId, this.patient.id).then(response => {
+        let orderId = response.data
+        window.location.href = '/order/show?orderId=' + orderId
+      }).catch(e => {
+        this.submitBnt = '确认挂号'
+      })
     },
     addPatient() {
       window.location.href = '/patient/add'
@@ -222,4 +240,5 @@ export default {
 .hospital-order .content-wrapper {
   margin-left: 140px;
   margin-top: 20px;
-}</style>
+}
+</style>
