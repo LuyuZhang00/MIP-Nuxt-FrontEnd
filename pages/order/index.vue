@@ -83,8 +83,8 @@
 <script>
 import '~/assets/css/hospital_personal.css'
 import '~/assets/css/hospital.css'
-import orderInfoApi from '@/api/order/orderInfo'
-import patientApi from '@/api/user/patient'
+import orderInfoApi from '@/api/orderInfo'
+import patientApi from '@/api/patient'
 export default {
   data() {
     return {
@@ -106,8 +106,7 @@ export default {
   methods: {
     fetchData(page = 1) {
       this.page = page
-      orderInfoApi.getPageList(this.page, this.limit, this.searchObj).t
-      hen(response => {
+      orderInfoApi.getPageList(this.page, this.limit, this.searchObj).then(response => {
         console.log(response.data);
         this.list = response.data.records
         this.total = response.data.total
